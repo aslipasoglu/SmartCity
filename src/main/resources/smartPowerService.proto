@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package smart_power;
+
+
+
+// Options for the GRPC
+option java_package = "com.power.service";
+option java_multiple_files = true; 
+option java_outer_classname = "SmartPowerServiceImpl";
+
+
+// Service Definitions
+service SmartPowerService {
+  rpc getEnergyConsumption (GetEnergyConsumptionRequest) returns (GetEnergyConsumptionResponse) {}
+  rpc setMaxEnergyLimit (SetMaxEnergyLimitRequest) returns (stream SetMaxEnergyLimitResponse) {}
+  rpc GetTotalEnergyConsumption (stream GetTotalEnergyConsumptionRequest) returns (GetTotalEnergyConsumptionResponse) {}
+}
+
+// Defining the messages
+message GetEnergyConsumptionRequest {
+  int32 deviceId = 1;
+}
+
+message GetEnergyConsumptionResponse {
+  int32 energyConsumption = 1;
+}
+
+message SetMaxEnergyLimitRequest {
+  int32 maxEnergyLimit = 1;
+}
+
+message SetMaxEnergyLimitResponse {
+  string message = 1;
+  int32 currentMaxEnergyLimit = 2;
+}
+
+message GetTotalEnergyConsumptionRequest {
+  int32 deviceId = 1;
+}
+
+message GetTotalEnergyConsumptionResponse {
+  string message = 1;
+}

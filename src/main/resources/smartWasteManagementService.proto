@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package smart_power;
+
+option java_package = "com.waste.service";
+option java_multiple_files = true; 
+option java_outer_classname = "SmartWasteManagementServiceImpl";
+
+service SmartWasteManagementService {
+  rpc GetCustomizedRoute (stream GetCustomizedRouteRequest) returns (GetCustomizedRouteResponse) {}
+  rpc GetBinLocator (GetBinLocatorRequest) returns (GetBinLocatorResponse) {}
+  
+}
+
+message GetCustomizedRouteRequest {
+  int32 binLevel1 = 1;
+}
+
+message GetCustomizedRouteResponse {
+  string optimizedRoute = 1;
+  int32 binLevel1 = 2;
+  int32 binLevel2 = 3;
+}
+
+message GetBinLocatorRequest {
+ string currentLocation = 1;
+  
+}
+
+message GetBinLocatorResponse {
+  string nearestRecyclingBin = 1;
+  
+}
+
+
